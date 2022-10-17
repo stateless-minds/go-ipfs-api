@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net"
 	gohttp "net/http"
 	"os"
@@ -545,6 +546,60 @@ func (s *Shell) PubSubPublish(topic, data string) (err error) {
 	if resp.Error != nil {
 		return resp.Error
 	}
+	return nil
+}
+
+func (s *Shell) OrbitKVGet(key string) ([]byte, error) {
+	// connect
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/kvget", encoder.Encode([]byte(key))).Send(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return nil, resp.Error
+	}
+
+	val, err := ioutil.ReadAll(resp.Output)
+	if err != nil {
+		return nil, err
+	}
+
+	return val, nil
+}
+
+func (s *Shell) OrbitKVPut(key string, val []byte) (err error) {
+
+	fr := files.NewReaderFile(bytes.NewReader(val))
+	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
+	fileReader := files.NewMultiFileReader(slf, true)
+
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/kvput", encoder.Encode([]byte(key))).
+		Body(fileReader).Send(context.Background())
+	if err != nil {
+		return err
+	}
+	defer resp.Close()
+	if resp.Error != nil {
+		return resp.Error
+	}
+	return nil
+}
+
+func (s *Shell) OrbitKVDelete(key string) error {
+	// connect
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/kvdel", encoder.Encode([]byte(key))).Send(context.Background())
+	if err != nil {
+		return err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return resp.Error
+	}
+
 	return nil
 }
 
