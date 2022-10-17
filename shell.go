@@ -605,7 +605,7 @@ func (s *Shell) OrbitDocsDelete(key string) error {
 func (s *Shell) OrbitDocsGet(key string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvget", encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/docsget", encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
