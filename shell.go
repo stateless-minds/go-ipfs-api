@@ -549,10 +549,10 @@ func (s *Shell) PubSubPublish(topic, data string) (err error) {
 	return nil
 }
 
-func (s *Shell) OrbitKVCreate(storeType string) (string, error) {
+func (s *Shell) OrbitDBCreate(storeType string) (string, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvcreate", encoder.Encode([]byte(storeType))).Send(context.Background())
+	resp, err := s.Request("orbit/dbcreate", encoder.Encode([]byte(storeType))).Send(context.Background())
 	if err != nil {
 		return "", err
 	}
