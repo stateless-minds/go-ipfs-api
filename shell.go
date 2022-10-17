@@ -569,9 +569,9 @@ func (s *Shell) OrbitKVGet(key string) ([]byte, error) {
 	return val, nil
 }
 
-func (s *Shell) OrbitDocsPut(key string, val []byte) error {
+func (s *Shell) OrbitDocsPut(doc []byte) error {
 
-	fr := files.NewReaderFile(bytes.NewReader(val))
+	fr := files.NewReaderFile(bytes.NewReader(doc))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
 	fileReader := files.NewMultiFileReader(slf, true)
 
