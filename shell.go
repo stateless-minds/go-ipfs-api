@@ -549,10 +549,30 @@ func (s *Shell) PubSubPublish(topic, data string) (err error) {
 	return nil
 }
 
-func (s *Shell) OrbitKVGet(key string) ([]byte, error) {
+func (s *Shell) OrbitKVCreate(storeType string) (string, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvget", encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/kvcreate", encoder.Encode([]byte(storeType))).Send(context.Background())
+	if err != nil {
+		return "", err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return "", resp.Error
+	}
+
+	val, err := ioutil.ReadAll(resp.Output)
+	if err != nil {
+		return "", err
+	}
+
+	return string(val), nil
+}
+
+func (s *Shell) OrbitKVGet(dbAddress, storeType, key string) ([]byte, error) {
+	// connect
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/kvget", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(storeType)), encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
@@ -569,14 +589,14 @@ func (s *Shell) OrbitKVGet(key string) ([]byte, error) {
 	return val, nil
 }
 
-func (s *Shell) OrbitKVPut(key string, val []byte) (err error) {
+func (s *Shell) OrbitKVPut(dbAddress, storeType, key string, val []byte) error {
 
 	fr := files.NewReaderFile(bytes.NewReader(val))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
 	fileReader := files.NewMultiFileReader(slf, true)
 
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvput", encoder.Encode([]byte(key))).
+	resp, err := s.Request("orbit/kvput", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(storeType)), encoder.Encode([]byte(key))).
 		Body(fileReader).Send(context.Background())
 	if err != nil {
 		return err
@@ -588,10 +608,10 @@ func (s *Shell) OrbitKVPut(key string, val []byte) (err error) {
 	return nil
 }
 
-func (s *Shell) OrbitKVDelete(key string) error {
+func (s *Shell) OrbitKVDelete(dbAddress, storeType, key string) error {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvdel", encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/kvdel", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(storeType)), encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return err
 	}
