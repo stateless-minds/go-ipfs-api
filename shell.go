@@ -622,6 +622,26 @@ func (s *Shell) OrbitDocsGet(key string) ([]byte, error) {
 	return val, nil
 }
 
+func (s *Shell) OrbitDocsQuery(key, query string) ([]byte, error) {
+	// connect
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/docsget", encoder.Encode([]byte(key)), encoder.Encode([]byte(query))).Send(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return nil, resp.Error
+	}
+
+	val, err := ioutil.ReadAll(resp.Output)
+	if err != nil {
+		return nil, err
+	}
+
+	return val, nil
+}
+
 func (s *Shell) OrbitKVPut(key string, val []byte) error {
 
 	fr := files.NewReaderFile(bytes.NewReader(val))
