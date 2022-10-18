@@ -625,7 +625,7 @@ func (s *Shell) OrbitDocsGet(key string) ([]byte, error) {
 func (s *Shell) OrbitDocsQuery(key, query string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsget", encoder.Encode([]byte(key)), encoder.Encode([]byte(query))).Send(context.Background())
+	resp, err := s.Request("orbit/docsquery", encoder.Encode([]byte(key)), encoder.Encode([]byte(query))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
