@@ -8,8 +8,8 @@ import (
 	"io"
 	"strings"
 
-	files "github.com/ipfs/boxo/files"
-	"github.com/ipfs/go-ipfs-api/options"
+	files "github.com/stateless-minds/boxo/files"
+	"github.com/stateless-minds/go-ipfs-api/options"
 )
 
 type DagPutOutput struct {

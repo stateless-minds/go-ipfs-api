@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	files "github.com/ipfs/boxo/files"
+	files "github.com/stateless-minds/boxo/files"
 )
 
 type object struct {
