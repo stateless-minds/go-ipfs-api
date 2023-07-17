@@ -568,10 +568,10 @@ func (s *Shell) OrbitKVPut(dbAddres, key string, val []byte) error {
 	return nil
 }
 
-func (s *Shell) OrbitKVGet(dbAddress, key string) ([]byte, error) {
+func (s *Shell) OrbitKVGet(dbName, key string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvget", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/kvget", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
@@ -588,10 +588,10 @@ func (s *Shell) OrbitKVGet(dbAddress, key string) ([]byte, error) {
 	return val, nil
 }
 
-func (s *Shell) OrbitKVDelete(dbAddress, key string) error {
+func (s *Shell) OrbitKVDelete(dbName, key string) error {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/kvdel", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/kvdel", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return err
 	}
@@ -603,14 +603,14 @@ func (s *Shell) OrbitKVDelete(dbAddress, key string) error {
 	return nil
 }
 
-func (s *Shell) OrbitDocsPut(dbAddress string, doc []byte) error {
+func (s *Shell) OrbitDocsPut(dbName string, doc []byte) error {
 
 	fr := files.NewReaderFile(bytes.NewReader(doc))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
 	fileReader := files.NewMultiFileReader(slf, true)
 
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsput", encoder.Encode([]byte(dbAddress))).
+	resp, err := s.Request("orbit/docsput", encoder.Encode([]byte(dbName))).
 		Body(fileReader).Send(context.Background())
 	if err != nil {
 		return err
@@ -622,10 +622,10 @@ func (s *Shell) OrbitDocsPut(dbAddress string, doc []byte) error {
 	return nil
 }
 
-func (s *Shell) OrbitDocsGet(dbAddress, key string) ([]byte, error) {
+func (s *Shell) OrbitDocsGet(dbName, key string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsget", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/docsget", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
@@ -642,10 +642,10 @@ func (s *Shell) OrbitDocsGet(dbAddress, key string) ([]byte, error) {
 	return val, nil
 }
 
-func (s *Shell) OrbitDocsQuery(dbAddress, key, query string) ([]byte, error) {
+func (s *Shell) OrbitDocsQuery(dbName, key, query string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsquery", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(key)), encoder.Encode([]byte(query))).Send(context.Background())
+	resp, err := s.Request("orbit/docsquery", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key)), encoder.Encode([]byte(query))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
@@ -662,10 +662,10 @@ func (s *Shell) OrbitDocsQuery(dbAddress, key, query string) ([]byte, error) {
 	return val, nil
 }
 
-func (s *Shell) OrbitDocsDelete(dbAddress, key string) error {
+func (s *Shell) OrbitDocsDelete(dbName, key string) error {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsdel", encoder.Encode([]byte(dbAddress)), encoder.Encode([]byte(key))).Send(context.Background())
+	resp, err := s.Request("orbit/docsdel", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key))).Send(context.Background())
 	if err != nil {
 		return err
 	}
