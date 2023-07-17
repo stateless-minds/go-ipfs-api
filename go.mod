@@ -8,7 +8,7 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/multiformats/go-multiaddr v0.8.0
 	github.com/multiformats/go-multibase v0.2.0
-	github.com/stateless-minds/boxo v0.10.6
+	github.com/stateless-minds/boxo v0.10.7
 	github.com/whyrusleeping/tar-utils v0.0.0-20180509141711-8c6c8ba81d5c
 )
 
