@@ -5,6 +5,7 @@ module github.com/stateless-minds/go-ipfs-api
 require (
 	github.com/cheekybits/is v0.0.0-20150225183255-68e9c0620927
 	github.com/ipfs/boxo v0.8.0
+	github.com/ipfs/go-ipfs-api v0.6.0
 	github.com/libp2p/go-libp2p v0.26.3
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/multiformats/go-multiaddr v0.8.0
