@@ -1,4 +1,4 @@
-go 1.19
+go 1.20
 
 module github.com/stateless-minds/go-ipfs-api
 
