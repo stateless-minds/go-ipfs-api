@@ -48,8 +48,8 @@ github.com/multiformats/go-varint v0.0.7/go.mod h1:r8PUYw/fD/SjBCiKOoDlGF6QawOEL
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/spaolacci/murmur3 v1.1.0 h1:7c1g84S4BPRrfL5Xrdp6fOJ206sU9y293DDHaoy0bLI=
 github.com/spaolacci/murmur3 v1.1.0/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
-github.com/stateless-minds/boxo v0.10.5 h1:GKjqx799iGvhpTqqgTKSiho442qVQ9tjSuTpcQgv/vQ=
-github.com/stateless-minds/boxo v0.10.5/go.mod h1:R2TFYhrSBKezvooNSBD94tx7il0YMuts1CtifcdLc/A=
+github.com/stateless-minds/boxo v0.10.6 h1:UPBGTRCNWXzKXXiiQca57s88XNyTGDQdezgYEvoDqEs=
+github.com/stateless-minds/boxo v0.10.6/go.mod h1:cd8ioKb1Gg7QFv9qr59x56JBN9XUgh06xBV2Rgpmliw=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/whyrusleeping/tar-utils v0.0.0-20180509141711-8c6c8ba81d5c h1:GGsyl0dZ2jJgVT+VvWBf/cNijrHRhkrTjkmp5wg7li0=
 github.com/whyrusleeping/tar-utils v0.0.0-20180509141711-8c6c8ba81d5c/go.mod h1:xxcJeBb7SIUl/Wzkz1eVKJE/CB34YNrqX2TQI6jY9zs=
