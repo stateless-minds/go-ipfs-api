@@ -18,6 +18,8 @@ import (
 	"time"
 
 	"github.com/cheekybits/is"
+	files "github.com/ipfs/boxo/files"
+
 	"github.com/ipfs/go-ipfs-api/options"
 )
 
@@ -123,6 +125,15 @@ func TestAddDir(t *testing.T) {
 	cid, err := s.AddDir("./testdata")
 	is.Nil(err)
 	is.Equal(cid, "QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv")
+}
+
+func TestAddDirWithCidV1(t *testing.T) {
+	is := is.New(t)
+	s := NewShell(shellUrl)
+
+	cid, err := s.AddDir("./testdata", CidVersion(1))
+	is.Nil(err)
+	is.Equal(cid, "bafybeibgegl5yqme2jehvvneapbq7he5ahi3tmk4cpmlagrggeji6hzayq")
 }
 
 func TestAddDirOffline(t *testing.T) {
@@ -442,6 +453,59 @@ func TestDagPutWithOpts(t *testing.T) {
 	c, err := s.DagPutWithOpts(`{"x": "abc","y":"def"}`, options.Dag.Pin("true"))
 	is.Nil(err)
 	is.Equal(c, "bafyreidrm3r2k6vlxqp2fk47sboeycf7apddib47w7cyagrajtpaxxl2pi")
+}
+
+func TestDagImport(t *testing.T) {
+	is := is.New(t)
+	s := NewShell(shellUrl)
+
+	carFile, err := os.ReadFile("./tests/test.car")
+	is.Nil(err)
+
+	_, err = s.DagImport(carFile, true, false)
+	is.Nil(err)
+}
+
+func TestDagImportWithOpts(t *testing.T) {
+	is := is.New(t)
+	s := NewShell(shellUrl)
+
+	carFile, err := os.ReadFile("./tests/test.car")
+	is.Nil(err)
+
+	c, err := s.DagImportWithOpts(carFile, options.Dag.Stats(true), options.Dag.Silent(false))
+	is.Nil(err)
+	is.Equal(c.Roots[0].Root.Cid.Value, "bafybeibnhml2ecayjfa747ryfuy3ws5im6q4kscapqv7ajaspezwsw63ee")
+	is.NotNil(c.Stats)
+	is.Equal(c.Stats.BlockBytesCount, 173)
+	is.Equal(c.Stats.BlockCount, 5)
+}
+
+func TestDagImportMultipleCARs(t *testing.T) {
+	is := is.New(t)
+	s := NewShell(shellUrl)
+
+	carFile1, err := os.ReadFile("./tests/cars/1.car")
+	is.Nil(err)
+
+	carFile2, err := os.ReadFile("./tests/cars/2.car")
+	is.Nil(err)
+
+	slf := files.NewSliceDirectory([]files.DirEntry{
+		files.FileEntry("", files.NewReaderFile(bytes.NewReader(carFile1))),
+		files.FileEntry("", files.NewReaderFile(bytes.NewReader(carFile2))),
+	})
+
+	dagImported, err := s.DagImportWithOpts(
+		files.NewMultiFileReader(slf, true),
+		options.Dag.Stats(true),
+		options.Dag.Silent(false),
+	)
+
+	is.Nil(err)
+	is.Equal(2, len(dagImported.Roots))
+	is.Equal(411, dagImported.Stats.BlockBytesCount)
+	is.Equal(11, dagImported.Stats.BlockCount)
 }
 
 func TestStatsBW(t *testing.T) {
