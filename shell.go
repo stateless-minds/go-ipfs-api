@@ -605,6 +605,9 @@ func (s *Shell) OrbitKVPut(dbAddres, key string, val []byte) error {
 	fr := files.NewReaderFile(bytes.NewReader(val))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
 	fileReader := s.newMultiFileReader(slf)
+	if err != nil {
+		return err
+	}
 
 	encoder, _ := mbase.EncoderByName("base64url")
 	resp, err := s.Request("orbit/kvput", encoder.Encode([]byte(dbAddres)), encoder.Encode([]byte(key))).
@@ -659,6 +662,9 @@ func (s *Shell) OrbitDocsPut(dbName string, doc []byte) error {
 	fr := files.NewReaderFile(bytes.NewReader(doc))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
 	fileReader := s.newMultiFileReader(slf)
+	if err != nil {
+		return err
+	}
 
 	encoder, _ := mbase.EncoderByName("base64url")
 	resp, err := s.Request("orbit/docsput", encoder.Encode([]byte(dbName))).
