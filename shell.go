@@ -604,7 +604,7 @@ func (s *Shell) OrbitKVPut(dbAddres, key string, val []byte) error {
 
 	fr := files.NewReaderFile(bytes.NewReader(val))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
-	fileReader := s.newMultiFileReader(slf)
+	fileReader, err := s.newMultiFileReader(slf)
 	if err != nil {
 		return err
 	}
@@ -661,7 +661,7 @@ func (s *Shell) OrbitDocsPut(dbName string, doc []byte) error {
 
 	fr := files.NewReaderFile(bytes.NewReader(doc))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
-	fileReader := s.newMultiFileReader(slf)
+	fileReader, err := s.newMultiFileReader(slf)
 	if err != nil {
 		return err
 	}
