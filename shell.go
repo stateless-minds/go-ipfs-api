@@ -18,12 +18,12 @@ import (
 	"time"
 
 	"github.com/blang/semver/v4"
-	files "github.com/stateless-minds/boxo/files"
-	tar "github.com/stateless-minds/boxo/tar"
 	homedir "github.com/mitchellh/go-homedir"
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 	mbase "github.com/multiformats/go-multibase"
+	files "github.com/stateless-minds/boxo/files"
+	tar "github.com/stateless-minds/boxo/tar"
 
 	p2pmetrics "github.com/libp2p/go-libp2p/core/metrics"
 )
@@ -679,10 +679,52 @@ func (s *Shell) OrbitDocsPut(dbName string, doc []byte) error {
 	return nil
 }
 
+func (s *Shell) OrbitDocsPutEnc(dbName string, doc []byte) error {
+
+	fr := files.NewReaderFile(bytes.NewReader(doc))
+	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
+	fileReader, err := s.newMultiFileReader(slf)
+	if err != nil {
+		return err
+	}
+
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/docsputenc", encoder.Encode([]byte(dbName))).
+		Body(fileReader).Send(context.Background())
+	if err != nil {
+		return err
+	}
+	defer resp.Close()
+	if resp.Error != nil {
+		return resp.Error
+	}
+	return nil
+}
+
 func (s *Shell) OrbitDocsGet(dbName, key string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
 	resp, err := s.Request("orbit/docsget", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key))).Send(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return nil, resp.Error
+	}
+
+	val, err := ioutil.ReadAll(resp.Output)
+	if err != nil {
+		return nil, err
+	}
+
+	return val, nil
+}
+
+func (s *Shell) OrbitDocsQueryEnc(dbName, key, query string) ([]byte, error) {
+	// connect
+	encoder, _ := mbase.EncoderByName("base64url")
+	resp, err := s.Request("orbit/docsqueryenc", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key)), encoder.Encode([]byte(query))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
