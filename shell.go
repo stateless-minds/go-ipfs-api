@@ -790,6 +790,20 @@ func (s *Shell) RunInflationIndexer() error {
 	return nil
 }
 
+func (s *Shell) DeleteExpiredSubscriptions() error {
+	// connect
+	resp, err := s.Request("orbit/delexpsubs").Send(context.Background())
+	if err != nil {
+		return err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return resp.Error
+	}
+
+	return nil
+}
+
 type ObjectStats struct {
 	Hash           string
 	BlockSize      int
