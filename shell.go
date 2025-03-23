@@ -806,7 +806,7 @@ func (s *Shell) DeleteExpiredSubscriptions() error {
 
 func (s *Shell) CheckKeys() error {
 	// connect
-	resp, err := s.Request("check-keys").Send(context.Background())
+	resp, err := s.Request("orbit/check-keys").Send(context.Background())
 	if err != nil {
 		return err
 	}
