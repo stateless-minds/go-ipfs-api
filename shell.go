@@ -804,20 +804,6 @@ func (s *Shell) DeleteExpiredSubscriptions() error {
 	return nil
 }
 
-func (s *Shell) CheckKeys() error {
-	// connect
-	resp, err := s.Request("orbit/check-keys").Send(context.Background())
-	if err != nil {
-		return err
-	}
-	if resp.Error != nil {
-		resp.Close()
-		return resp.Error
-	}
-
-	return nil
-}
-
 type ObjectStats struct {
 	Hash           string
 	BlockSize      int
