@@ -721,10 +721,10 @@ func (s *Shell) OrbitDocsGet(dbName, key string) ([]byte, error) {
 	return val, nil
 }
 
-func (s *Shell) OrbitDocsQueryEnc(dbName string) ([]byte, error) {
+func (s *Shell) OrbitDocsQueryEnc(dbName, key, value string) ([]byte, error) {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsqueryenc", encoder.Encode([]byte(dbName))).Send(context.Background())
+	resp, err := s.Request("orbit/docsqueryenc", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(key)), encoder.Encode([]byte(value))).Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
