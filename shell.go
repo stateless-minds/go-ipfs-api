@@ -679,7 +679,7 @@ func (s *Shell) OrbitDocsPut(dbName string, doc []byte) error {
 	return nil
 }
 
-func (s *Shell) OrbitDocsPutEnc(dbName string, doc []byte, query string) error {
+func (s *Shell) OrbitDocsPutEnc(dbName string, doc []byte) error {
 
 	fr := files.NewReaderFile(bytes.NewReader(doc))
 	slf := files.NewSliceDirectory([]files.DirEntry{files.FileEntry("", fr)})
@@ -689,7 +689,7 @@ func (s *Shell) OrbitDocsPutEnc(dbName string, doc []byte, query string) error {
 	}
 
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/docsputenc", encoder.Encode([]byte(dbName)), encoder.Encode([]byte(query))).
+	resp, err := s.Request("orbit/docsputenc", encoder.Encode([]byte(dbName))).
 		Body(fileReader).Send(context.Background())
 	if err != nil {
 		return err
