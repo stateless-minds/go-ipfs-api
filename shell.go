@@ -734,7 +734,7 @@ func (s *Shell) OrbitDocsDelete(dbName, key string) error {
 	return nil
 }
 
-func (s *Shell) CreateCountryAccounts(dbName, key string) error {
+func (s *Shell) CreateCountryAccounts() error {
 	// connect
 	resp, err := s.Request("orbit/create-country-accounts").Send(context.Background())
 	if err != nil {
