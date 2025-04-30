@@ -734,10 +734,9 @@ func (s *Shell) OrbitDocsDelete(dbName, key string) error {
 	return nil
 }
 
-func (s *Shell) OrbitCheckKeys(descriptor string) error {
+func (s *Shell) CreateCountryAccounts(dbName, key string) error {
 	// connect
-	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/checkkeys", encoder.Encode([]byte(descriptor))).Send(context.Background())
+	resp, err := s.Request("orbit/create-country-accounts").Send(context.Background())
 	if err != nil {
 		return err
 	}
