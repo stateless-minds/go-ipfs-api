@@ -748,6 +748,20 @@ func (s *Shell) CreateCountryAccounts() error {
 	return nil
 }
 
+func (s *Shell) CreateCountryWallets() error {
+	// connect
+	resp, err := s.Request("orbit/create-country-wallets").Send(context.Background())
+	if err != nil {
+		return err
+	}
+	if resp.Error != nil {
+		resp.Close()
+		return resp.Error
+	}
+
+	return nil
+}
+
 func (s *Shell) RunInflationIndexer() error {
 	// connect
 	resp, err := s.Request("orbit/runindexer").Send(context.Background())
