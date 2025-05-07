@@ -748,10 +748,10 @@ func (s *Shell) CreateCountryAccounts() error {
 	return nil
 }
 
-func (s *Shell) UpdateCountryAccount(country, govermentID, descriptor, credentialID string) error {
+func (s *Shell) UpdateCountryAccount(country, govermentID, name, descriptor, credentialID string) error {
 	// connect
 	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/update-country-account", encoder.Encode([]byte(country)), encoder.Encode([]byte(govermentID)), encoder.Encode([]byte(descriptor)), encoder.Encode([]byte(credentialID))).Send(context.Background())
+	resp, err := s.Request("orbit/update-country-account", encoder.Encode([]byte(country)), encoder.Encode([]byte(govermentID)), encoder.Encode([]byte(name)), encoder.Encode([]byte(descriptor)), encoder.Encode([]byte(credentialID))).Send(context.Background())
 	if err != nil {
 		return err
 	}
