@@ -734,49 +734,6 @@ func (s *Shell) OrbitDocsDelete(dbName, key string) error {
 	return nil
 }
 
-func (s *Shell) CreateCountryAccounts() error {
-	// connect
-	resp, err := s.Request("orbit/create-country-accounts").Send(context.Background())
-	if err != nil {
-		return err
-	}
-	if resp.Error != nil {
-		resp.Close()
-		return resp.Error
-	}
-
-	return nil
-}
-
-func (s *Shell) UpdateCountryAccount(country, govermentID, name, descriptor, credentialID string) error {
-	// connect
-	encoder, _ := mbase.EncoderByName("base64url")
-	resp, err := s.Request("orbit/update-country-account", encoder.Encode([]byte(country)), encoder.Encode([]byte(govermentID)), encoder.Encode([]byte(name)), encoder.Encode([]byte(descriptor)), encoder.Encode([]byte(credentialID))).Send(context.Background())
-	if err != nil {
-		return err
-	}
-	if resp.Error != nil {
-		resp.Close()
-		return resp.Error
-	}
-
-	return nil
-}
-
-func (s *Shell) CreateCountryWallets() error {
-	// connect
-	resp, err := s.Request("orbit/create-country-wallets").Send(context.Background())
-	if err != nil {
-		return err
-	}
-	if resp.Error != nil {
-		resp.Close()
-		return resp.Error
-	}
-
-	return nil
-}
-
 func (s *Shell) RunInflationIndexer() error {
 	// connect
 	resp, err := s.Request("orbit/runindexer").Send(context.Background())
