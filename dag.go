@@ -8,7 +8,7 @@ import (
 	"io"
 	"strings"
 
-	files "github.com/ipfs/boxo/files"
+	files "github.com/stateless-minds/boxo/files"
 	"github.com/stateless-minds/go-ipfs-api/options"
 )
 
