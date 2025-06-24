@@ -8,7 +8,7 @@ import (
 
 	shell "github.com/stateless-minds/go-ipfs-api"
 
-	u "github.com/stateless-minds/boxo/util"
+	u "github.com/stateless-minds/boxo-latest/util"
 )
 
 var sh *shell.Shell

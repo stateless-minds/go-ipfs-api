@@ -22,8 +22,8 @@ import (
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 	mbase "github.com/multiformats/go-multibase"
-	files "github.com/stateless-minds/boxo/files"
-	tar "github.com/stateless-minds/boxo/tar"
+	files "github.com/stateless-minds/boxo-latest/files"
+	tar "github.com/stateless-minds/boxo-latest/tar"
 
 	p2pmetrics "github.com/libp2p/go-libp2p/core/metrics"
 )

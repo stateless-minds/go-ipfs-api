@@ -4,7 +4,7 @@ import (
 	"context"
 	"io"
 
-	files "github.com/stateless-minds/boxo/files"
+	files "github.com/stateless-minds/boxo-latest/files"
 )
 
 type FilesOpt func(*RequestBuilder) error
