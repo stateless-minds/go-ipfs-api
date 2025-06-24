@@ -11,7 +11,7 @@ import (
 	"os"
 	"strings"
 
-	files "github.com/stateless-minds/boxo-latest/files"
+	files "github.com/ipfs/boxo/files"
 )
 
 type Request struct {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"io"
 
-	files "github.com/stateless-minds/boxo-latest/files"
+	files "github.com/ipfs/boxo/files"
 )
 
 type Key struct {

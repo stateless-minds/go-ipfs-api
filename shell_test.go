@@ -18,7 +18,7 @@ import (
 	"time"
 
 	"github.com/cheekybits/is"
-	files "github.com/stateless-minds/boxo-latest/files"
+	files "github.com/ipfs/boxo/files"
 
 	"github.com/stateless-minds/go-ipfs-api/options"
 )

@@ -7,11 +7,11 @@ module github.com/stateless-minds/go-ipfs-api
 require (
 	github.com/blang/semver/v4 v4.0.0
 	github.com/cheekybits/is v0.0.0-20150225183255-68e9c0620927
+	github.com/ipfs/boxo v0.32.0
 	github.com/libp2p/go-libp2p v0.41.1
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/multiformats/go-multiaddr v0.16.0
 	github.com/multiformats/go-multibase v0.2.0
-	github.com/stateless-minds/boxo-latest v0.32.2
 )
 
 require (
