@@ -14,6 +14,10 @@ github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.0 h1:NMZiJj8QnKe1LgsbDayM4UoHwbvw
 github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.0/go.mod h1:ZXNYxsqcloTdSy/rNShjYzMhyjf0LaoftYK0p+A3h40=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
+github.com/ipfs/boxo v0.31.1-0.20250603090712-f33982933143 h1:B9PqfT9cx8SxL8Kh5XQ09NpA+08Pj2esaa8falCE2aY=
+github.com/ipfs/boxo v0.31.1-0.20250603090712-f33982933143/go.mod h1:gEkUkBiZWtEjHd1AiUxaWEYaQApPtbeGF45fdfCwLX0=
+github.com/ipfs/boxo v0.32.3 h1:1CIlBAnGrS9gL+5h4EF2zHQnvFJVMQU9V7Kui3Y2Ezg=
+github.com/ipfs/boxo v0.32.3/go.mod h1:XXn1l3YIWIclulQAbEEF8tyKOymHOc2xcaaWfXoQQZA=
 github.com/ipfs/go-cid v0.5.0 h1:goEKKhaGm0ul11IHA7I6p1GmKz8kEYniqFopaB5Otwg=
 github.com/ipfs/go-cid v0.5.0/go.mod h1:0L7vmeNXpQpUS9vt+yEARkJ8rOg43DF3iPgn4GIN0mk=
 github.com/klauspost/cpuid/v2 v2.2.10 h1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=
@@ -50,8 +54,6 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/spaolacci/murmur3 v1.1.0 h1:7c1g84S4BPRrfL5Xrdp6fOJ206sU9y293DDHaoy0bLI=
 github.com/spaolacci/murmur3 v1.1.0/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
-github.com/stateless-minds/boxo v0.32.3 h1:1CIlBAnGrS9gL+5h4EF2zHQnvFJVMQU9V7Kui3Y2Ezg=
-github.com/stateless-minds/boxo v0.32.3/go.mod h1:XXn1l3YIWIclulQAbEEF8tyKOymHOc2xcaaWfXoQQZA=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 golang.org/x/crypto v0.39.0 h1:SHs+kF4LP+f+p14esP5jAoDpHU8Gu/v9lFRK6IT5imM=

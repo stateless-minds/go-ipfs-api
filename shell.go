@@ -18,12 +18,12 @@ import (
 	"time"
 
 	"github.com/blang/semver/v4"
+	files "github.com/ipfs/boxo/files"
+	tar "github.com/ipfs/boxo/tar"
 	homedir "github.com/mitchellh/go-homedir"
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 	mbase "github.com/multiformats/go-multibase"
-	files "github.com/stateless-minds/boxo/files"
-	tar "github.com/stateless-minds/boxo/tar"
 
 	p2pmetrics "github.com/libp2p/go-libp2p/core/metrics"
 )

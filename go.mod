@@ -11,13 +11,13 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/multiformats/go-multiaddr v0.16.0
 	github.com/multiformats/go-multibase v0.2.0
-	github.com/stateless-minds/boxo v0.32.3
 )
 
 require (
 	github.com/benbjohnson/clock v1.3.5 // indirect
 	github.com/crackcomm/go-gitignore v0.0.0-20241020182519-7843d2ba8fdf // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.0 // indirect
+	github.com/ipfs/boxo v0.31.1-0.20250603090712-f33982933143 // indirect
 	github.com/ipfs/go-cid v0.5.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
